@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!----><Service xmlns="http://www.gip.com/xyna/xdev/xfractmod" Label="Get All Requests With Filter" TypeName="GetAllRequestsWithFilter" TypePath="genoasbackend.workflows" Version="1.8">
+  <Operation ID="0" IsStatic="false" Label="Get All Requests With Filter" Name="GetAllRequestsWithFilter">
+    <Input>
+      <Data ID="487" Label="Resource_Filter" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable487"/>
+    </Input>
+    <Output>
+      <Data ID="535" IsList="true" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable535"/>
+    </Output>
+    <Throws>
+      <Exception Label="XMOM Storable Access Exception" ReferenceName="XMOMStorableAccessException" ReferencePath="xnwh.persistence" VariableName="xMOMStorableAccessException1032"/>
+    </Throws>
+    <ServiceReference ID="63" Label="Persistence Services" ReferenceName="PersistenceServices.PersistenceServices" ReferencePath="xnwh.persistence">
+      <Source RefID="62"/>
+      <Target RefID="62"/>
+    </ServiceReference>
+    <Mappings ID="60" Label="">
+      <Meta>
+        <IsCondition>true</IsCondition>
+      </Meta>
+      <Input>
+        <Data ID="791" Label="Resource_Filter" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable791">
+          <Source RefID="62"/>
+        </Data>
+        <Source RefID="487"/>
+      </Input>
+      <Input>
+        <Data ID="952" Label="Resource_Filter" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable952">
+          <Source RefID="62"/>
+        </Data>
+        <Source RefID="487"/>
+      </Input>
+      <Output>
+        <Data ID="66" Label="Filter condition" ReferenceName="FilterCondition" ReferencePath="xnwh.persistence" VariableName="filterCondition66">
+          <Source RefID="60"/>
+        </Data>
+        <Target RefID="67"/>
+      </Output>
+      <Mapping>%2%.formula=concat("(%0%.providerAppName==\"", replaceall(replaceall(%0%.providerAppName, "\\\\", "\\\\\\\\"), "\"", "\\\\\""), "\") &amp;&amp; (%0%.providerAppVersion==\"", replaceall(replaceall(%1%.providerAppVersion, "\\\\", "\\\\\\\\"), "\"", "\\\\\""), "\")")</Mapping>
+    </Mappings>
+    <Function ID="62" Label="Query">
+      <Source RefID="63"/>
+      <Source RefID="666"/>
+      <Source RefID="67"/>
+      <Source RefID="69"/>
+      <Target RefID="63"/>
+      <Target RefID="667"/>
+      <Meta>
+        <QueryFilter>
+          <Condition>%0%.providerAppName==%1%.providerAppName</Condition>
+          <Condition>%0%.providerAppVersion==%2%.providerAppVersion</Condition>
+        </QueryFilter>
+      </Meta>
+      <Invoke Operation="query" ServiceID="63">
+        <Source RefID="666">
+          <Meta>
+            <LinkType>Constant</LinkType>
+          </Meta>
+        </Source>
+        <Source RefID="67">
+          <Meta>
+            <LinkType>UserConnected</LinkType>
+          </Meta>
+        </Source>
+        <Source RefID="69">
+          <Meta>
+            <LinkType>Constant</LinkType>
+          </Meta>
+        </Source>
+      </Invoke>
+      <Receive ServiceID="63">
+        <Target RefID="667"/>
+      </Receive>
+    </Function>
+    <Data ID="67" Label="Filter condition" ReferenceName="FilterCondition" ReferencePath="xnwh.persistence" VariableName="filterCondition67">
+      <Source RefID="60"/>
+      <Target RefID="64"/>
+    </Data>
+    <Data ID="69" Label="Query parameter" ReferenceName="QueryParameter" ReferencePath="xnwh.persistence" VariableName="const_QueryParameter69">
+      <Data VariableName="maxObjects">
+        <Meta>
+          <Type>int</Type>
+        </Meta>
+        <Value>-1</Value>
+      </Data>
+      <Data VariableName="queryHistory">
+        <Meta>
+          <Type>boolean</Type>
+        </Meta>
+        <Value>false</Value>
+      </Data>
+      <Data IsList="true" ReferenceName="SortCriterion" ReferencePath="xnwh.persistence" VariableName="sortCriterion"/>
+    </Data>
+    <Data ID="666" Label="Selection mask" ReferenceName="SelectionMask" ReferencePath="xnwh.persistence" VariableName="const_SelectionMask666">
+      <Data VariableName="rootType">
+        <Meta>
+          <Type>String</Type>
+        </Meta>
+        <Value>genoasbackend.datatypes.storables.Resource_Storable</Value>
+      </Data>
+      <Data IsList="true" VariableName="columns">
+        <Meta>
+          <Type>String</Type>
+        </Meta>
+      </Data>
+    </Data>
+    <Data ID="667" IsList="true" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable667"/>
+    <Assign ID="1">
+      <Source RefID="667"/>
+      <Target RefID="535"/>
+      <Copy>
+        <Source RefID="667"/>
+        <Target RefID="535"/>
+      </Copy>
+    </Assign>
+  </Operation>
+</Service>

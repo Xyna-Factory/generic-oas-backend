@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!----><Application applicationName="Generic_OAS_Backend" comment="Umstellung auf &quot;Resource&quot;" factoryVersion="9.0.3.2" versionName="1.3" xmlVersion="1.1">
+  <ApplicationInfo>
+    <RuntimeContextRequirements>
+      <RuntimeContextRequirement>
+        <ApplicationName>Base</ApplicationName>
+        <VersionName>1.0.19</VersionName>
+      </RuntimeContextRequirement>
+    </RuntimeContextRequirements>
+  </ApplicationInfo>
+  <Ordertypes>
+    <Ordertype implicitDependency="false">
+      <DestinationKey>genoasbackend.workflows.DeleteRequest</DestinationKey>
+      <OrderContextMapping>false</OrderContextMapping>
+    </Ordertype>
+    <Ordertype implicitDependency="false">
+      <DestinationKey>genoasbackend.workflows.GetAllRequestsWithFilter</DestinationKey>
+      <OrderContextMapping>false</OrderContextMapping>
+    </Ordertype>
+    <Ordertype implicitDependency="false">
+      <DestinationKey>genoasbackend.workflows.GetRequestById</DestinationKey>
+      <OrderContextMapping>false</OrderContextMapping>
+    </Ordertype>
+    <Ordertype implicitDependency="false">
+      <DestinationKey>genoasbackend.workflows.StoreRequest</DestinationKey>
+      <OrderContextMapping>false</OrderContextMapping>
+    </Ordertype>
+  </Ordertypes>
+  <XMOMEntries>
+    <XMOMEntry implicitDependency="false">
+      <FqName>genoasbackend.datatypes.ResourceId</FqName>
+      <Type>DATATYPE</Type>
+    </XMOMEntry>
+    <XMOMEntry implicitDependency="false">
+      <FqName>genoasbackend.datatypes.storables.Resource_Storable</FqName>
+      <Type>DATATYPE</Type>
+    </XMOMEntry>
+    <XMOMEntry implicitDependency="false">
+      <FqName>genoasbackend.workflows.DeleteRequest</FqName>
+      <Type>WORKFLOW</Type>
+    </XMOMEntry>
+    <XMOMEntry implicitDependency="false">
+      <FqName>genoasbackend.workflows.GetAllRequestsWithFilter</FqName>
+      <Type>WORKFLOW</Type>
+    </XMOMEntry>
+    <XMOMEntry implicitDependency="false">
+      <FqName>genoasbackend.workflows.GetRequestById</FqName>
+      <Type>WORKFLOW</Type>
+    </XMOMEntry>
+    <XMOMEntry implicitDependency="false">
+      <FqName>genoasbackend.workflows.StoreRequest</FqName>
+      <Type>WORKFLOW</Type>
+    </XMOMEntry>
+  </XMOMEntries>
+  <XmomStorables>
+    <XmomStorable>
+      <XmlName>genoasbackend.datatypes.storables.Resource_Storable</XmlName>
+      <Path/>
+      <OdsName>resource_storable</OdsName>
+      <FqPath/>
+    </XmomStorable>
+    <XmomStorable>
+      <XmlName>genoasbackend.datatypes.storables.Resource_Storable</XmlName>
+      <Path>id</Path>
+      <OdsName>resource_storable</OdsName>
+      <FqPath>id</FqPath>
+      <ColumnName>id</ColumnName>
+    </XmomStorable>
+    <XmomStorable>
+      <XmlName>genoasbackend.datatypes.storables.Resource_Storable</XmlName>
+      <Path>objectType</Path>
+      <OdsName>resource_storable</OdsName>
+      <FqPath>objectType</FqPath>
+      <ColumnName>objecttype</ColumnName>
+    </XmomStorable>
+    <XmomStorable>
+      <XmlName>genoasbackend.datatypes.storables.Resource_Storable</XmlName>
+      <Path>providerAppName</Path>
+      <OdsName>resource_storable</OdsName>
+      <FqPath>providerAppName</FqPath>
+      <ColumnName>providerappname</ColumnName>
+    </XmomStorable>
+    <XmomStorable>
+      <XmlName>genoasbackend.datatypes.storables.Resource_Storable</XmlName>
+      <Path>providerAppVersion</Path>
+      <OdsName>resource_storable</OdsName>
+      <FqPath>providerAppVersion</FqPath>
+      <ColumnName>providerappversion</ColumnName>
+    </XmomStorable>
+    <XmomStorable>
+      <XmlName>genoasbackend.datatypes.storables.Resource_Storable</XmlName>
+      <Path>request</Path>
+      <OdsName>resource_storable</OdsName>
+      <FqPath>request</FqPath>
+      <ColumnName>request</ColumnName>
+    </XmomStorable>
+    <XmomStorable>
+      <XmlName>genoasbackend.datatypes.storables.Resource_Storable</XmlName>
+      <Path>resource</Path>
+      <OdsName>resource_storable</OdsName>
+      <FqPath>resource</FqPath>
+      <ColumnName>resource</ColumnName>
+    </XmomStorable>
+    <XmomStorable>
+      <XmlName>genoasbackend.datatypes.storables.Resource_Storable</XmlName>
+      <Path>saveTime</Path>
+      <OdsName>resource_storable</OdsName>
+      <FqPath>saveTime</FqPath>
+      <ColumnName>savetime</ColumnName>
+    </XmomStorable>
+    <XmomStorable>
+      <XmlName>genoasbackend.datatypes.storables.Resource_Storable</XmlName>
+      <Path>typename</Path>
+      <OdsName>resource_storable</OdsName>
+      <FqPath>typename</FqPath>
+      <ColumnName>typename</ColumnName>
+    </XmomStorable>
+  </XmomStorables>
+</Application>

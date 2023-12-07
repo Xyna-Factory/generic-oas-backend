@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!----><Service xmlns="http://www.gip.com/xyna/xdev/xfractmod" Label="Get Request By Id" TypeName="GetRequestById" TypePath="genoasbackend.workflows" Version="1.8">
+  <Operation ID="0" IsStatic="false" Label="Get Request By Id" Name="GetRequestById">
+    <Input>
+      <Data ID="18" Label="Resource Id" ReferenceName="ResourceId" ReferencePath="genoasbackend.datatypes" VariableName="requestId18"/>
+    </Input>
+    <Output>
+      <Data ID="568" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable568"/>
+    </Output>
+    <Throws>
+      <Exception Label="XMOM Storable Access Exception" ReferenceName="XMOMStorableAccessException" ReferencePath="xnwh.persistence" VariableName="xMOMStorableAccessException1311"/>
+      <Exception Label="" ReferenceName="XMOMStorableMaxLengthValidationException" ReferencePath="xnwh.persistence" VariableName="xMOMStorableMaxLengthValidationException1312"/>
+    </Throws>
+    <ServiceReference ID="75" Label="Persistence Services" ReferenceName="PersistenceServices.PersistenceServices" ReferencePath="xnwh.persistence">
+      <Source RefID="74"/>
+      <Target RefID="74"/>
+    </ServiceReference>
+    <Mappings ID="61" Label="">
+      <Meta>
+        <IsCondition>true</IsCondition>
+      </Meta>
+      <Input>
+        <Data ID="63" Label="Resource Id" ReferenceName="ResourceId" ReferencePath="genoasbackend.datatypes" VariableName="requestId63"/>
+        <Source RefID="18"/>
+      </Input>
+      <Output>
+        <Data ID="64" Label="Filter condition" ReferenceName="FilterCondition" ReferencePath="xnwh.persistence" VariableName="filterCondition64"/>
+        <Target RefID="48"/>
+      </Output>
+      <Mapping>%1%.formula=concat("(%0%.id==\"", replaceall(replaceall(%0%.id, "\\\\", "\\\\\\\\"), "\"", "\\\\\""), "\")")</Mapping>
+    </Mappings>
+    <Function ID="74" Label="Query">
+      <Source RefID="75"/>
+      <Source RefID="677"/>
+      <Source RefID="48"/>
+      <Source RefID="120"/>
+      <Target RefID="75"/>
+      <Target RefID="678"/>
+      <Meta>
+        <QueryFilter>
+          <Condition>%0%.id==%1%.id</Condition>
+        </QueryFilter>
+      </Meta>
+      <Invoke Operation="query" ServiceID="75">
+        <Source RefID="677">
+          <Meta>
+            <LinkType>Constant</LinkType>
+          </Meta>
+        </Source>
+        <Source RefID="48">
+          <Meta>
+            <LinkType>UserConnected</LinkType>
+          </Meta>
+        </Source>
+        <Source RefID="120">
+          <Meta>
+            <LinkType>Constant</LinkType>
+          </Meta>
+        </Source>
+      </Invoke>
+      <Receive ServiceID="75">
+        <Target RefID="678"/>
+      </Receive>
+    </Function>
+    <Choice ID="194" TypeName="BaseChoiceTypeFormula" TypePath="server">
+      <Source RefID="678"/>
+      <Target RefID="934"/>
+      <Input>
+        <Data ID="727" IsList="true" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable727">
+          <Source RefID="194"/>
+        </Data>
+        <Source RefID="678"/>
+      </Input>
+      <Case ID="195" Label="true" Premise="length(%0%)!=&quot;1&quot;">
+        <Throw ExceptionID="209" ID="208" Label="Throw XMOM Storable Max Length Validation Exception">
+          <Meta>
+            <PreferedExceptionType>xnwh.persistence.XMOMStorableMaxLengthValidationException</PreferedExceptionType>
+          </Meta>
+          <Source RefID="209">
+            <Meta>
+              <LinkType>Constant</LinkType>
+            </Meta>
+          </Source>
+        </Throw>
+        <Assign/>
+      </Case>
+      <Case ID="196" Label="false">
+        <Mappings ID="412" Label="Mapping">
+          <Input>
+            <Data ID="874" IsList="true" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable874">
+              <Source RefID="412"/>
+            </Data>
+            <Source RefID="678"/>
+          </Input>
+          <Output>
+            <Data ID="923" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable923">
+              <Source RefID="412"/>
+            </Data>
+            <Target RefID="924"/>
+          </Output>
+          <Mapping>%1%=%0%["0"]</Mapping>
+        </Mappings>
+        <Assign>
+          <Source RefID="924"/>
+          <Target RefID="934"/>
+          <Copy>
+            <Source RefID="924"/>
+            <Target RefID="934"/>
+          </Copy>
+        </Assign>
+      </Case>
+    </Choice>
+    <Data ID="48" Label="Filter condition" ReferenceName="FilterCondition" ReferencePath="xnwh.persistence" VariableName="filterCondition48"/>
+    <Data ID="120" Label="Query parameter" ReferenceName="QueryParameter" ReferencePath="xnwh.persistence" VariableName="const_QueryParameter120">
+      <Data VariableName="maxObjects">
+        <Meta>
+          <Type>int</Type>
+        </Meta>
+        <Value>1</Value>
+      </Data>
+      <Data VariableName="queryHistory">
+        <Meta>
+          <Type>boolean</Type>
+        </Meta>
+        <Value>false</Value>
+      </Data>
+      <Data IsList="true" ReferenceName="SortCriterion" ReferencePath="xnwh.persistence" VariableName="sortCriterion"/>
+    </Data>
+    <Data ID="677" Label="Selection mask" ReferenceName="SelectionMask" ReferencePath="xnwh.persistence" VariableName="const_SelectionMask677">
+      <Data VariableName="rootType">
+        <Meta>
+          <Type>String</Type>
+        </Meta>
+        <Value>genoasbackend.datatypes.storables.Resource_Storable</Value>
+      </Data>
+      <Data IsList="true" VariableName="columns">
+        <Meta>
+          <Type>String</Type>
+        </Meta>
+      </Data>
+    </Data>
+    <Data ID="678" IsList="true" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable678"/>
+    <Data ID="924" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable924">
+      <Source RefID="412"/>
+    </Data>
+    <Data ID="934" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable934">
+      <Source RefID="194"/>
+    </Data>
+    <Exception ID="209" ReferenceName="XMOMStorableMaxLengthValidationException" ReferencePath="xnwh.persistence" VariableName="xMOMStorableMaxLengthValidationException209">
+      <Target RefID="208"/>
+      <Data VariableName="xmomStorableName">
+        <Meta>
+          <Type>String</Type>
+        </Meta>
+        <Value>Request_Storable</Value>
+      </Data>
+      <Data VariableName="subtype">
+        <Meta>
+          <Type>String</Type>
+        </Meta>
+      </Data>
+      <Data VariableName="path">
+        <Meta>
+          <Type>String</Type>
+        </Meta>
+      </Data>
+      <Data VariableName="restriction">
+        <Meta>
+          <Type>String</Type>
+        </Meta>
+      </Data>
+      <Data VariableName="length">
+        <Meta>
+          <Type>Integer</Type>
+        </Meta>
+        <Value>1</Value>
+      </Data>
+    </Exception>
+    <Assign ID="1">
+      <Source RefID="934"/>
+      <Target RefID="568"/>
+      <Copy>
+        <Source RefID="934"/>
+        <Target RefID="568"/>
+      </Copy>
+    </Assign>
+  </Operation>
+</Service>

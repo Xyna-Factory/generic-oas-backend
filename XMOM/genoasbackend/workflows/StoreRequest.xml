@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!----><Service xmlns="http://www.gip.com/xyna/xdev/xfractmod" Label="Store Request" TypeName="StoreRequest" TypePath="genoasbackend.workflows" Version="1.8">
+  <Operation ID="0" IsStatic="false" Label="Store Request" Name="StoreRequest">
+    <Input>
+      <Data ID="231" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable231"/>
+    </Input>
+    <Output>
+      <Data ID="285" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable285"/>
+    </Output>
+    <Throws>
+      <Exception Label="XMOM Storable Access Exception" ReferenceName="XMOMStorableAccessException" ReferencePath="xnwh.persistence" VariableName="xMOMStorableAccessException631"/>
+    </Throws>
+    <ServiceReference ID="50" Label="Store" ReferenceName="Store" ReferencePath="xnwh.persistence">
+      <Source RefID="49"/>
+      <Target RefID="49"/>
+    </ServiceReference>
+    <Function ID="49" Label="Store">
+      <Source RefID="50"/>
+      <Source RefID="231"/>
+      <Source RefID="180"/>
+      <Target RefID="50"/>
+      <Target RefID="52"/>
+      <Invoke Operation="Store" ServiceID="50">
+        <Source RefID="231">
+          <Meta>
+            <ExpectedType>genoasbackend.datatypes.storables.Resource_Storable</ExpectedType>
+          </Meta>
+        </Source>
+        <Source RefID="180">
+          <Meta>
+            <LinkType>Constant</LinkType>
+          </Meta>
+        </Source>
+      </Invoke>
+      <Receive ServiceID="50">
+        <Target RefID="52">
+          <Meta>
+            <ExpectedType>genoasbackend.datatypes.storables.Resource_Storable</ExpectedType>
+          </Meta>
+        </Target>
+      </Receive>
+    </Function>
+    <Data ID="52" Label="Resource_Storable" ReferenceName="Resource_Storable" ReferencePath="genoasbackend.datatypes.storables" VariableName="resource_Storable52"/>
+    <Data ID="180" Label="Store parameter" ReferenceName="StoreParameter" ReferencePath="xnwh.persistence" VariableName="const_StoreParameter180">
+      <Data VariableName="historizePreviousObject">
+        <Meta>
+          <Type>boolean</Type>
+        </Meta>
+        <Value>false</Value>
+      </Data>
+      <Data VariableName="keepMetaFieldData">
+        <Meta>
+          <Type>boolean</Type>
+        </Meta>
+        <Value>false</Value>
+      </Data>
+      <Data VariableName="forceRecursiveStore">
+        <Meta>
+          <Type>boolean</Type>
+        </Meta>
+        <Value>false</Value>
+      </Data>
+    </Data>
+    <Assign ID="1">
+      <Source RefID="52"/>
+      <Target RefID="285"/>
+      <Copy>
+        <Source RefID="52">
+          <Meta>
+            <LinkType>UserConnected</LinkType>
+          </Meta>
+        </Source>
+        <Target RefID="285"/>
+      </Copy>
+    </Assign>
+  </Operation>
+</Service>
