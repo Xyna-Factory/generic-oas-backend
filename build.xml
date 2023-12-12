@@ -23,6 +23,7 @@
 	<path location="${basedir}/../xyna-factory/" />
     </pathconvert>
     <property name="target.dir" value="${basedir}/deploy/" />
+    <property name="apps.paths" value="${root.dir},${basedir}" />
 
     <target name="build">
 
