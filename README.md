@@ -8,7 +8,7 @@ Actual Version: 1.3
 ## Introduction
 
 The application contains services to manage incoming requests. The requests are stored as strings in the Xyna database and can be read from there.
-When a JSON representation of Xyna datatypes is used, those objects can be serialized and de-seriralized with the standard JSON services, that are present in the JSON application of the Xnya Factory
+When a JSON representation of Xyna datatypes is used, those objects can be serialized and de-serialized with the standard JSON services, that are present in the JSON application of the Xnya Factory
 
 ## Services
 
